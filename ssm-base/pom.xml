@@ -121,6 +121,26 @@
         </dependency>
         <!-- mybatis-spring 整合包 End -->
 
+        <!-- 数据库驱动包 Start -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.connector.version}</version>
+        </dependency>
+        <!-- 数据库驱动包 End -->
+
+        <!-- 数据源 Start -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>0.2.9</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <!-- 数据源 End -->
 
 
 
