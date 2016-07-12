@@ -41,8 +41,8 @@
 		<!-- mybatis 配置文件的位置 -->
 		<!-- <property name="configLocation" value="classpath:mybatis-config.xml" /> -->
 		<!-- 加载mapper.xml文件 -->
-		<property name="typeAliasesPackage" value="com.lsk.ssm.model"></property>
-		<property name="mapperLocations" value="classpath:com/lisk/ssm/mapping/*Mapper.xml" />
+		<property name="typeAliasesPackage" value="com.lisk"></property>
+		<property name="mapperLocations" value="classpath:com/lisk/demo/*Mapper.xml" />
 		<property name="plugins">
 			<list>
 				<bean class="com.github.miemiedev.mybatis.paginator.OffsetLimitInterceptor">
@@ -55,7 +55,7 @@
 	
 	<!-- 配置使用代理的方式创建Mapper对象 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.lsk.ssm.mapper" />
+		<property name="basePackage" value="com.lisk.demo" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean>
 	
@@ -64,54 +64,21 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<!-- 注解方式配置事物 -->
-	<!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->
-	
-	
 	<!-- 拦截器方式配置事物 -->
 	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="add*" propagation="REQUIRED" />
-			<tx:method name="append*" propagation="REQUIRED" />
-			<tx:method name="insert*" propagation="REQUIRED" />
 			<tx:method name="save*" propagation="REQUIRED" />
 			<tx:method name="update*" propagation="REQUIRED" />
-			<tx:method name="modify*" propagation="REQUIRED" />
-			<tx:method name="edit*" propagation="REQUIRED" />
 			<tx:method name="delete*" propagation="REQUIRED" />
-			<tx:method name="remove*" propagation="REQUIRED" />
-			<tx:method name="repair" propagation="REQUIRED" />
-			<tx:method name="delAndRepair" propagation="REQUIRED" />
-
 			<tx:method name="get*" propagation="SUPPORTS" />
 			<tx:method name="find*" propagation="SUPPORTS" />
-			<tx:method name="load*" propagation="SUPPORTS" />
-			<tx:method name="search*" propagation="SUPPORTS" />
-			<tx:method name="datagrid*" propagation="SUPPORTS" />
-
 			<tx:method name="*" propagation="SUPPORTS" />
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-		<aop:pointcut id="transactionPointcut" expression="execution(* sy.service..*Impl.*(..))" />
+		<aop:pointcut id="transactionPointcut" expression="execution(* com.lisk.*..*Impl.*(..))" />
 		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
 	</aop:config>
-
-
-	<!-- 配置druid监控spring jdbc -->
-	<bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
-	</bean>
-	<bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut" scope="prototype">
-		<property name="patterns">
-			<list>
-				<value>sy.service.*</value>
-			</list>
-		</property>
-	</bean>
-	<aop:config>
-		<aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />
-	</aop:config>
-	
-	
 
 </beans>

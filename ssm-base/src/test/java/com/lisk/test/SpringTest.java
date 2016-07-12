@@ -1,6 +1,7 @@
 package com.lisk.test;
 
-import com.lisk.demo.UserService;
+import com.lisk.demo.User;
+import com.lisk.demo.UserServiceImpl;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -13,9 +14,11 @@ public class SpringTest {
     @Test
     public void test(){
 
-        ApplicationContext axt=new ClassPathXmlApplicationContext("classpath:spring-beans.xml");
-        UserService userService= (UserService) axt.getBean("userService");
-        userService.world();
+        ApplicationContext axt=new ClassPathXmlApplicationContext(new String[]{"classpath:spring-beans.xml","classpath:spring-mybatis.xml"});
+        UserServiceImpl userService= (UserServiceImpl) axt.getBean("userServiceImpl");
+        User user=new User();
+        user.setUsername("hello");
+        userService.saveUser(user);
 
 
 

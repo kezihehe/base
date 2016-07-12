@@ -142,6 +142,33 @@
         </dependency>
         <!-- 数据源 End -->
 
+        <!-- 工具包 Start -->
+        <dependency><!-- AOP 依赖jar包 -->
+            <groupId>aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.5.4</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- 工具包 End -->
+
+        <!-- json 处理 Start -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.11</version>
+        </dependency>
+        <!-- json 处理 End -->
+
+
+
+
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
 
 
 
