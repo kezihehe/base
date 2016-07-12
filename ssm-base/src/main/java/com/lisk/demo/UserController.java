@@ -1,5 +1,6 @@
 package com.lisk.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -10,9 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user")
 public class UserController {
 
+    @Autowired
+    private UserServiceImpl userService;
+
     @RequestMapping("/hello")
     public String hello(){
-
+        User user=new User();
+        user.setUsername("ha");
+        userService.saveUser(user);
         return "hello";
     }
 
